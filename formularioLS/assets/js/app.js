@@ -1,18 +1,12 @@
 // Variables
 const listaTweets = document.getElementById('lista-tweets');
-
 //Event Listeners
 eventListeners();
-
 function eventListeners() {
-
 	document.querySelector('#formulario').addEventListener('submit', agregarTweet);
-
 	listaTweets.addEventListener('click', borraTweet);
-
 	document.addEventListener('DOMContentLoaded', localStorageListo);
 }
-
 //Funciones 
 function agregarTweet(e) {
 	e.preventDefault ();
@@ -28,7 +22,6 @@ function agregarTweet(e) {
 	
 	agregarTweetLocalStorage(tweet);
 }
-
 function borraTweet(e){
 	e.preventDefault();
 	if(e.target.className === 'borrar-tweet') {
@@ -36,14 +29,13 @@ function borraTweet(e){
 		borrarTweetLocalStorage(e.target.parentElement.innerText);
 	}
 }
-
 function localStorageListo() {
 	let tweets;
 	tweets = obtenerTweetsLocalStorage ();
-	tweets.forEach( function(tweet) {
+	tweets.forEach(function(tweet) {
 			const botonBorrar = document.createElement ('a');
-				  botonBorrar.classList = 'borrar-tweet';
-	              botonBorrar.innerText = 'X';
+			      botonBorrar.classList = 'borrar-tweet';
+	              	      botonBorrar.innerText = 'X';
 
 			const li = document.createElement ('li');
 			      li.innerText = tweet;
@@ -51,14 +43,12 @@ function localStorageListo() {
 			      listaTweets.appendChild(li);
 	});
 }
-
 function agregarTweetLocalStorage(tweet) {
 	let tweets;
 	tweets = obtenerTweetsLocalStorage();
 	tweets.push(tweet);
 	localStorage.setItem('tweets', JSON.stringify(tweets)); 
 }
-
 function obtenerTweetsLocalStorage() {
 	let tweets;
 	if (localStorage.getItem('tweets') === null) {
@@ -68,7 +58,6 @@ function obtenerTweetsLocalStorage() {
 	}
 	return tweets; 
 }
-
 function borrarTweetLocalStorage(tweet) {
 	let tweets, tweetBorrar;
 	tweetBorrar = tweet.substring(0, tweet.lenght -1);
